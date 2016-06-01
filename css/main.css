@@ -1,0 +1,457 @@
+@charset "UTF-8";
+body {
+  background-image: url(../images/background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body:after {
+  content: '';
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.85) 90%);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+p {
+  color: #aeaeae;
+}
+
+#app {
+  position: relative;
+  z-index: 2;
+  max-width: 50em;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+.draggable-bar {
+  position: fixed;
+  -webkit-app-region: drag;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5rem;
+  background: rgba(255, 100, 150, 0.1);
+  transition: background .2s ease;
+  cursor: move;
+}
+
+.draggable-bar:hover {
+  background: rgba(255, 100, 150, 0.3);
+}
+
+.primary-header {
+  padding-bottom: 2em;
+}
+
+.emphasis {
+  color: #C0392B;
+}
+
+.field {
+  position: relative;
+  padding: .5em;
+  margin: 0 auto 1em;
+  overflow: hidden;
+  width: 26em;
+}
+
+.field label {
+  color: #FFF;
+  float: left;
+  width: 6em;
+  padding: 1em;
+  text-align: right;
+}
+
+.field input {
+  float: left;
+  width: 15em;
+  border: none;
+  padding: 1em;
+  color: #222;
+  border-bottom: 2px solid transparent;
+}
+
+.field input:focus {
+  outline: none;
+  border-bottom: 2px solid #222;
+}
+
+.field input.empty:invalid {
+  border-bottom: 2px solid transparent;
+}
+
+.field input:invalid {
+  border-bottom: 2px solid #E74C3C;
+}
+
+.field input:valid {
+  border-bottom: 2px solid #2ECC71;
+}
+
+button[type=submit]:disabled {
+  background: #CCC;
+}
+
+.clippee {
+  transition: background .2s ease;
+  position: relative;
+}
+
+.clippee .tooltip {
+  display: none;
+  position: absolute;
+  bottom: -2.5em;
+  left: -4em;
+  width: 11em;
+  background: #CB2F58;
+  border-radius: .5em;
+  padding: .5em;
+}
+
+.clippee .tooltip:before {
+  content: '';
+  position: absolute;
+  top: -0.8em;
+  left: 50%;
+  margin-left: -.5em;
+  width: 0;
+  height: 0;
+  border: .5em solid transparent;
+  border-bottom: 0.5em solid #CB2F58;
+}
+
+.clippee:before {
+  font-family: 'icons';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  speak: none;
+  text-transform: none;
+  content: "";
+}
+
+.clippee:hover .tooltip {
+  display: block;
+}
+
+.clippee.coppied .clippee {
+  background: #2ECC71;
+}
+
+.flyout-container {
+  position: relative;
+}
+
+.flyout {
+  display: none;
+  position: absolute;
+  width: 100%;
+  right: 0;
+  background: #FFF;
+  list-style: none;
+  text-align: left;
+  padding-left: 0;
+}
+
+.open .flyout {
+  display: block;
+}
+
+.flyout .origin {
+  padding: .5em 1em;
+  cursor: pointer;
+}
+
+.flyout .origin:hover {
+  background: #CCC;
+  color: #555;
+}
+
+.loading {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 1.2em;
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.loading-dot {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  margin: 0 .25em;
+  background-color: #fff;
+  border-radius: 100%;
+  display: inline-block;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  animation-delay: -0.16s;
+}
+
+.loading-dot:first-child {
+  left: 47%;
+  animation-delay: -0.32s;
+}
+
+.loading-dot:last-child {
+  left: 53%;
+  animation-delay: 0;
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.messages {
+  width: 100%;
+  padding-top: 1em;
+  background: #CB2F58;
+  color: #FFF;
+}
+
+.messages .message {
+  padding: 1em;
+}
+
+.messages .message:before {
+  font-size: 1.2em;
+  vertical-align: bottom;
+  margin-right: .25em;
+}
+
+.messages .error:before {
+  font-family: 'icons';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  speak: none;
+  text-transform: none;
+  content: "";
+}
+
+.messages .success:before {
+  font-family: 'icons';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  speak: none;
+  text-transform: none;
+  content: "";
+}
+
+.page-change-enter {
+  position: absolute;
+  top: -1em;
+  opacity: .01;
+  left: 0;
+  width: 100%;
+}
+
+.page-change-enter.page-change-enter-active {
+  top: 0;
+  opacity: 1;
+  transition: opacity, .5s ease, top .3s ease-in;
+}
+
+.page-change-leave {
+  opacity: 0.01;
+}
+
+.page-change-leave.page-change-leave-active {
+  opacity: 0;
+  transition: opacity .3s ease-in;
+}
+
+.signup,
+.start-stream {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.intro-section,
+.obs-setup,
+.manual-setup {
+  margin: 1em 0 3em;
+}
+
+.auto-obs-setup:before {
+  font-family: 'icons';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  speak: none;
+  text-transform: none;
+  content: "";
+  margin-right: .5em;
+  font-size: 1.5em;
+  vertical-align: bottom;
+}
+
+.stream-key-toggle {
+  margin-bottom: 1em;
+}
+
+.stream-key-toggle:after {
+  font-family: 'icons';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  speak: none;
+  text-transform: none;
+  content: "";
+  vertical-align: bottom;
+  font-size: 1.3em;
+  margin-left: .25em;
+}
+
+.stream-key-toggle.showing:after {
+  font-family: 'icons';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  speak: none;
+  text-transform: none;
+  content: "";
+}
+
+.stream-key-wrapper,
+.origin-server-wrapper {
+  width: 22em;
+  margin: 0 auto 1em;
+  display: flex;
+}
+
+.stream-key-copy {
+  display: block;
+  padding: 1em;
+}
+
+.stream-key-text {
+  width: 100%;
+  background: #FFF;
+  padding: .75em;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.stream-key-reset {
+  background: none;
+  padding: 0;
+  color: #CB2F58;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  border-bottom: 1px dotted #9A9A9A;
+}
+
+.stream-key-reset:hover {
+  background: none;
+  color: #6B94B5;
+}
+
+.stream-key-reset:before {
+  font-family: 'icons';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  speak: none;
+  text-transform: none;
+  content: "";
+  font-size: 1.3em;
+  vertical-align: bottom;
+  margin-right: .25em;
+}
+
+.origin-server .clippee {
+  width: 3em;
+  height: 3.25em;
+}
+
+.origins-toggle {
+  background: #FFF;
+  color: #9A9A9A;
+  text-align: left;
+  width: 100%;
+}
+
+.origins-toggle:hover {
+  background: #FFF;
+  color: #555;
+}
+
+.origins {
+  width: 100%;
+}
+
+.view-stream {
+  height: 100%;
+  width: 100%;
+}
+
+.stream {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
+.stream .stream-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.chat {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.chat .chat-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 56.25%;
+  border: none;
+}
+
+/*# sourceMappingURL=main.css.map */

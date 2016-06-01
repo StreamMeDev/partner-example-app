@@ -1,0 +1,47 @@
+{
+  "name": "@streammedev/partner-example-app",
+  "version": "1.0.0",
+  "description": "An example app for Stream.me Partners",
+  "main": "index.js",
+  "keywords": [
+    "example",
+    "streamme",
+    "parthers"
+  ],
+  "author": "StreamMe",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://git@stash.internal.vubeology.com/scm/npm/partner-example-app.git"
+  },
+  "publishConfig": {
+    "registry": "http://npm-onsite-internal.stream.me:8080"
+  },
+  "scripts": {
+    "start": "npm run babel && electron .",
+    "test": "npm run babel && happiness && mocha",
+    "babel": "babel src -d lib",
+    "sass": "node-sass --output-style expanded --include-path node_modules --source-map css/main.css.map sass/main.scss css/main.css"
+  },
+  "optionalDependencies": {
+    "@streamme/style-driver": "0.0.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "electron-prebuilt": "^1.2.0",
+    "happiness": "^6.0.7",
+    "mocha": "^2.5.3",
+    "node-sass": "^3.7.0"
+  },
+  "dependencies": {
+    "@streammedev/flyout": "0.0.1",
+    "clipboard": "^1.5.10",
+    "lodash.get": "^4.3.0",
+    "mkdirp": "^0.5.1",
+    "react": "^15.1.0",
+    "react-addons-css-transition-group": "^15.1.0",
+    "react-dom": "^15.1.0"
+  }
+}
