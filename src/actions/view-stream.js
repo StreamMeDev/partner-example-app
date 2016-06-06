@@ -20,6 +20,18 @@ export function viewStreamAction (config, user) {
 					user: user
 				};
 			}
+
+			if (!action.stream.active) {
+				return {
+					type: 'viewStream',
+					status: 'error',
+					error: {
+						message: 'Stream offline',
+						code: 'stream_offline'
+					},
+					user: user
+				};
+			}
 			
 			if (action.status === 'success') {
 				dispatcher.dispatch({

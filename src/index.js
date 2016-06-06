@@ -72,7 +72,7 @@ dispatcher.subscribe({
 			state.loading = false;
 		} else {
 			state.messages = [{
-				message: 'OBS Setup Complete',
+				message: 'OBS setup complete, go start streaming!',
 				level: 'success',
 				code: 'obs_success'
 			}];
@@ -132,18 +132,28 @@ dispatcher.subscribe({
 		render();
 	},
 	getUserStream: function (action) {
+		var state = {};
 		if (action.status === 'success') {
-			if (action.user.slug === store.user.slug && (!store.stream || store.stream.slug !== store.user.slug && store.currentView !== 'stream')) {
-				store = Object.assign({}, store, {
-					userStream: action.stream,
-					messages: [{
+			// Is this the current users stream?
+			if (action.user.slug === store.user.slug) {
+				state.userStream = action.stream;
+
+				// If it is also online and we are not viewing it, show the banner
+				if (action.stream.active && (!store.stream || store.stream.slug !== store.user.slug) && store.currentView !== 'stream') {
+					state.messages = [{
 						message: React.createElement(StreamOnlineMessage, {viewStream: viewYourStream}),
 						level: 'success',
 						code: 'you_are_streaming'
 					}]
-				});
+				}
+			}
+
+			// Check if this is the stream we are viewing
+			if (store.stream && action.stream.slug === store.stream.slug) {
+				state.stream = action.stream;
 			}
 		}
+		store = Object.assign({}, store, state);
 		render();
 	},
 	startPollingUserStream: function (action) {

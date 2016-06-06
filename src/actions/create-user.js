@@ -12,7 +12,7 @@ export function createUserAction (config, userData) {
 	return new Promise(function createUser (resolve) {
 		request({
 			method: 'POST',
-			url: config.hostname + '/api-partners/v1/' + config.clientSlug + '/users',
+			url: config.apiHostname + '/api/v1/' + config.clientSlug + '/users',
 			json: {
 				username: userData.username,
 				email: userData.email

@@ -11,7 +11,7 @@ $ git clone git@github.com:StreamMeDev/partner-example-app.git
 $ cd partner-example-app
 ```
 
-To get started you will need StreamMe Partner credentials, these should have been provided to you from your contact at StreamMe.  Open up `config.js` and add the `clientSlug`, `clientId` and `clientSecret` to the approprite fields.  Now you can start the app:
+To get started you will need StreamMe Partner credentials, these should have been provided to you from your contact at StreamMe.  Open up `config.js` and add the `clientSlug`, `clientId` and `clientSecret` to the approprite fields in `config.js`.  Now you can start the app:
 
 ```
 $ npm install && npm start

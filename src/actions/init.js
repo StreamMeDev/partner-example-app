@@ -3,6 +3,7 @@ import {getBroadcastAction} from './get-broadcast';
 import {loadUserAction} from './load-user';
 import {changeCurrentViewAction} from './change-current-view';
 import {checkObsInstalledAction} from './check-obs-installed';
+import {viewStreamAction} from './view-stream';
 
 // Load user workflow
 export function initAction (config) {
@@ -15,12 +16,21 @@ export function initAction (config) {
 
 			if (action.status === 'success') {
 				dispatcher.dispatch(action);
-				return getBroadcastAction(config, action.user)
+
+				return viewStreamAction(config, action.user)
 					.then(function (action) {
-						dispatcher.dispatch(action);
-						if (action.status === 'success') {
-							return changeCurrentViewAction('start-stream');
+						// if online, this will be the action, so show the stream
+						if (action.type === 'changeCurrentView') {
+							return action;
 						}
+
+						return getBroadcastAction(config, action.user)
+							.then(function (action) {
+								dispatcher.dispatch(action);
+								if (action.status === 'success') {
+									return changeCurrentViewAction('start-stream');
+								}
+							});
 					});
 			}
 		})

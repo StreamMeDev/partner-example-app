@@ -12,7 +12,7 @@ export function getBroadcastAction (config, user) {
 	return new Promise(function getBroadcast (resolve) {
 		request({
 			method: 'GET',
-			url: config.hostname + '/api-partners/v1/' + config.clientSlug + '/users/' + user.slug + '/broadcast',
+			url: config.apiHostname + '/api/v1/' + config.clientSlug + '/users/' + user.slug + '/broadcast',
 			json: true,
 			auth: {
 				user: config.clientId,

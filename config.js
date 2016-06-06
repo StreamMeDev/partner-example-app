@@ -4,7 +4,8 @@ module.exports = function (app) {
 		userData: app.getPath('userData'),
 		height: 900,
 		widht: 1440,
-		hostname: 'https://www.stream.me',
+		apiHostname: 'https://partners.stream.me',
+		embedHostname: 'https://www.stream.me',
 		clientSlug: '',
 		clientId: '',
 		clientSecret: ''

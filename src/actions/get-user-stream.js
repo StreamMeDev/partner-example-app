@@ -13,7 +13,7 @@ export function getUserStreamAction (config, user) {
 	return new Promise(function getUserStream (resolve) {
 		request({
 			method: 'GET',
-			url: config.hostname + '/api-partners/v1/' + config.clientSlug + '/users/' + user.slug + '/stream',
+			url: config.apiHostname + '/api/v1/' + config.clientSlug + '/users/' + user.slug + '/stream',
 			json: true,
 			auth: {
 				user: config.clientId,
