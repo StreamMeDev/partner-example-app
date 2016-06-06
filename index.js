@@ -20,7 +20,7 @@ function createAppWindow () {
 	appWindow.on('closed', function () {
 		appWindow = null;
 	});
-	appWindow.webContents.openDevTools();
+	// appWindow.webContents.openDevTools();
 }
 
 function allWindowsClosed () {
