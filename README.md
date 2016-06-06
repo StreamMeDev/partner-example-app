@@ -58,7 +58,7 @@ request({
   // the response body for this is super simple:
   // {
   //   "slug": "slugified-version-of-username-submitted",
-  //   "displayName": "Username as submitted above"
+  //   "username": "Username as submitted above"
   // }
 });
 ```

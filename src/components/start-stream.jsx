@@ -21,7 +21,7 @@ export class StartStream extends React.Component {
 		return (
 			<div className="start-stream">
 				<div className="intro-section">
-					<h1>Hey <span className="emphasis">{this.props.user.displayName}</span>, </h1>
+					<h1>Hey <span className="emphasis">{this.props.user.username}</span>, </h1>
 					<p>Lets get streaming! If you already know what to do just grab your stream key and RTMP server below, if not <a href="https://www.stream.me/obs" target="_blank">hop over here</a> to follow our detailed instructions.</p>
 				</div>
 
