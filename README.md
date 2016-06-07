@@ -115,3 +115,5 @@ request({
   // }
 });
 ```
+
+*NOTE: This is just an example application.  In a real application you would never want to expose your client secret to your users.  The reccomended way to do a production integration is to create a server which talks to the StreamMe API's on your behalf.*
