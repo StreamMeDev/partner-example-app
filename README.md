@@ -26,7 +26,7 @@ This application is structured as a React Flux app where the endpoint integratio
 ```javascript
 request({
   method: 'POST',
-  url: 'https://www.stream.m/api-partners/v1/' + <CLIENT_SLUG> + '/users',
+  url: 'https://partners.stream.m/api/v1/' + <CLIENT_SLUG> + '/users',
   json: {
     username: <UNIQUE_USERNAME>,
     email: <OPTIONAL_USER_EMAIL>
@@ -68,7 +68,7 @@ In this example we use the request module from npm to make a basic auth'd reques
 ```javascript
 request({
   method: 'GET',
-  url: 'https://www.stream.me/api-partners/v1/' + <CLIENT_SLUG> + '/users/' + <USER_SLUG> + '/broadcast',
+  url: 'https://partners.stream.me/api/v1/' + <CLIENT_SLUG> + '/users/' + <USER_SLUG> + '/broadcast',
   json: true,
   auth: {
     user: <CLIENT_ID>,
