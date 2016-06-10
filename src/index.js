@@ -10,6 +10,7 @@ import {startPollingUserStreamAction} from './actions/start-polling-user-stream'
 import {stopPollingUserStreamAction} from './actions/stop-polling-user-stream';
 import {getUserStreamAction} from './actions/get-user-stream';
 import {viewStreamAction} from './actions/view-stream';
+import {resetStreamKeyAction} from './actions/reset-stream-key';
 
 // Load up the config from the main process
 var config = require('../config')(require('electron').remote.app);
@@ -26,7 +27,7 @@ var appEl = document.getElementById('app');
 
 // A method to render the react component
 function render () {
-	ReactDom.render(<Page {...store} config={config} createUser={createUser} setupObs={setupObs} />, appEl);
+	ReactDom.render(<Page {...store} config={config} createUser={createUser} setupObs={setupObs} resetStreamKey={resetStreamKey} />, appEl);
 }
 
 // Create user workflow
@@ -37,6 +38,11 @@ function createUser (userData) {
 // Auto setup obs
 function setupObs (broadcastUrl, broadcastKey) {
 	dispatcher.dispatch(setupObsAction(broadcastUrl, broadcastKey));
+}
+
+// Reset stream key
+function resetStreamKey () {
+	dispatcher.dispatch(resetStreamKeyAction(config, store.user));
 }
 
 // View your stream
@@ -125,6 +131,18 @@ dispatcher.subscribe({
 			state.broadcastKey = action.broadcastKey;
 			state.originServers = action.originServers;
 			state.loading = false;
+		}
+
+		// Merge in new state
+		store = Object.assign({}, store, state);
+		render();
+	},
+	resetStreamKey: function (action) {
+		var state = {};
+		if (action.status === 'error') {
+			state.messages = [action.error];
+		} else {
+			state.broadcastKey = action.broadcastKey;
 		}
 
 		// Merge in new state

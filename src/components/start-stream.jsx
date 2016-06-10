@@ -77,7 +77,9 @@ export class StartStream extends React.Component {
 	}
 
 	resetStreamKey (e) {
-		// do stuff
+		if (typeof this.props.resetStreamKey === 'function') {
+			this.props.resetStreamKey();
+		}
 	}
 
 	setupObs (e) {

@@ -11,7 +11,7 @@ export function resetStreamKeyAction (config, user) {
 
 	return new Promise(function resetStreamKey (resolve) {
 		request({
-			method: 'DELETE',
+			method: 'PUT',
 			url: config.apiHostname + '/api/v1/' + config.clientSlug + '/users/' + user.slug + '/broadcast',
 			json: true,
 			auth: {
