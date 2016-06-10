@@ -12,10 +12,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://git@stash.internal.vubeology.com/scm/npm/partner-example-app.git"
-  },
-  "publishConfig": {
-    "registry": "http://npm-onsite-internal.stream.me:8080"
+    "url": "git@github.com:StreamMeDev/partner-example-app.git"
   },
   "scripts": {
     "start": "npm run babel && electron .",
