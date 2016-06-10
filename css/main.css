@@ -364,7 +364,8 @@ button[type=submit]:disabled {
   text-align: left;
 }
 
-.stream-key-reset {
+.stream-key-reset,
+.logout {
   background: none;
   padding: 0;
   color: #CB2F58;
@@ -373,7 +374,8 @@ button[type=submit]:disabled {
   border-bottom: 1px dotted #9A9A9A;
 }
 
-.stream-key-reset:hover {
+.stream-key-reset:hover,
+.logout:hover {
   background: none;
   color: #6B94B5;
 }
@@ -452,6 +454,11 @@ button[type=submit]:disabled {
   height: 100%;
   padding-top: 56.25%;
   border: none;
+}
+
+.logout {
+  position: absolute;
+  bottom: 2em;
 }
 
 /*# sourceMappingURL=main.css.map */

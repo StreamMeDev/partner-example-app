@@ -14,6 +14,7 @@ export class StartStream extends React.Component {
 		this.resetStreamKey = this.resetStreamKey.bind(this);
 		this.setOrigin = this.setOrigin.bind(this);
 		this.setupObs = this.setupObs.bind(this);
+		this.logout = this.logout.bind(this);
 	}
 
 	render () {
@@ -65,6 +66,7 @@ export class StartStream extends React.Component {
 						</div>
 					) : false}
 				</div>
+				<button className="logout" onClick={this.logout}>Logout</button>
 			</div>
 		);
 		/* eslint-enable */
@@ -92,5 +94,11 @@ export class StartStream extends React.Component {
 		this.setState({
 			selectedOrigin: origin
 		});
+	}
+
+	logout (e) {
+		if (typeof this.props.logout === 'function') {
+			this.props.logout();
+		}
 	}
 }

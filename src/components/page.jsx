@@ -47,6 +47,7 @@ export class Page extends React.Component {
 					obsInstalled={this.props.obsInstalled}
 					setupObs={this.props.setupObs}
 					resetStreamKey={this.props.resetStreamKey}
+					logout={this.props.logout}
 				/>
 			);
 		case 'stream':

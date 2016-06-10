@@ -11,6 +11,8 @@ import {stopPollingUserStreamAction} from './actions/stop-polling-user-stream';
 import {getUserStreamAction} from './actions/get-user-stream';
 import {viewStreamAction} from './actions/view-stream';
 import {resetStreamKeyAction} from './actions/reset-stream-key';
+import {logoutAction} from './actions/logout';
+import {changeCurrentViewAction} from './actions/change-current-view';
 
 // Load up the config from the main process
 var config = require('../config')(require('electron').remote.app);
@@ -27,7 +29,14 @@ var appEl = document.getElementById('app');
 
 // A method to render the react component
 function render () {
-	ReactDom.render(<Page {...store} config={config} createUser={createUser} setupObs={setupObs} resetStreamKey={resetStreamKey} />, appEl);
+	ReactDom.render(<Page
+		{...store}
+		config={config}
+		createUser={createUser}
+		setupObs={setupObs}
+		resetStreamKey={resetStreamKey}
+		logout={logout}
+	/>, appEl);
 }
 
 // Create user workflow
@@ -43,6 +52,11 @@ function setupObs (broadcastUrl, broadcastKey) {
 // Reset stream key
 function resetStreamKey () {
 	dispatcher.dispatch(resetStreamKeyAction(config, store.user));
+}
+
+// Logout user
+function logout () {
+	dispatcher.dispatch(logoutAction(config));
 }
 
 // View your stream
@@ -196,6 +210,23 @@ dispatcher.subscribe({
 			state.loading = false;
 		} else {
 			state.stream = action.stream;
+		}
+
+		// Merge in new state
+		store = Object.assign({}, store, state);
+		render();
+	},
+	logout: function (action) {
+		var state = {};
+		if (action.status === 'loading') {
+			state.loading = true;
+		} else if (action.status === 'error') {
+			state.messages = [action.error];
+			state.loading = false;
+		} else {
+			state.user = null;
+			// Change to logged out view
+			dispatcher.dispatch(changeCurrentViewAction('signup'));
 		}
 
 		// Merge in new state
