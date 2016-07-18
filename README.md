@@ -26,7 +26,7 @@ This application is structured as a React Flux app where the endpoint integratio
 ```javascript
 request({
   method: 'POST',
-  url: 'https://partners.stream.m/api/v1/' + <CLIENT_SLUG> + '/users',
+  url: 'https://partners.stream.me/api/v1/' + <CLIENT_SLUG> + '/users',
   json: {
     username: <UNIQUE_USERNAME>,
     email: <OPTIONAL_USER_EMAIL>
